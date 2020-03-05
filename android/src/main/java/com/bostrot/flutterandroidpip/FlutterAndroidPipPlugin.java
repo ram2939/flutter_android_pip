@@ -1,8 +1,8 @@
 package com.bostrot.flutterandroidpip;
-
+import android.util.Rational;
 import android.annotation.TargetApi;
 import android.os.Build;
-
+import android.app.PictureInPictureParams;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -23,7 +23,7 @@ public class FlutterAndroidPipPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
     if (call.method.equals("enterPictureInPictureMode")) {
         if (Build.VERSION.SDK_INT > 24)
-          _registrar.activity().enterPictureInPictureMode(PictureinPictureParams.Builder.SetAspectRatio(1/2).build());
+          _registrar.activity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(new Rational(2,1)).build());
         result.success("Android " + android.os.Build.VERSION.RELEASE);
       } else {
         result.notImplemented();
