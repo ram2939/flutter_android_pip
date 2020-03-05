@@ -23,7 +23,7 @@ public class FlutterAndroidPipPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
     if (call.method.equals("enterPictureInPictureMode")) {
         if (Build.VERSION.SDK_INT > 24)
-          _registrar.activity().enterPictureInPictureMode();
+          _registrar.activity().enterPictureInPictureMode(PictureinPictureParams.Builder.SetAspectRatio(1:2).build());
         result.success("Android " + android.os.Build.VERSION.RELEASE);
       } else {
         result.notImplemented();
